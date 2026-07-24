@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrbitOS — The AI Operating System for Developer Communities</title>
+  <meta name="description" content="Scale your developer community automatically. Orchestrate specialized AI agents to onboard members, match mentors, build hackathon teams, and map your community's digital twin.">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Container -->
+  <div id="app">
+
+    <!-- Global Navigation -->
+    <header class="navbar" id="global-nav">
+      <div class="container navbar-container">
+        <div class="logo cursor-pointer" onclick="navigateTo('landing')">
+          <div class="logo-icon"></div>
+          <span>OrbitOS</span>
+        </div>
+        <nav class="flex align-center gap-6">
+          <a href="#features" class="text-sm color-secondary hover:text-primary">Features</a>
+          <a href="#twin" class="text-sm color-secondary hover:text-primary">Digital Twin</a>
+          <a href="#agents" class="text-sm color-secondary hover:text-primary">AI Agents</a>
+          <button class="btn btn-secondary text-sm" onclick="navigateTo('auth')">Sign In</button>
+          <button class="btn btn-primary text-sm" onclick="navigateTo('auth')">Launch Console</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+      
+      <!-- SCREEN 1: LANDING PAGE -->
+      <section id="screen-landing" class="animate-fade">
+        <!-- Hero Section -->
+        <div class="hero-container container flex flex-col align-center text-center p-8 m-t-12 m-b-12">
+          <div class="badge badge-champagne m-b-4">Introducing OrbitOS</div>
+          <h1 class="text-6xl font-light m-b-6" style="line-height: 1.1; max-width: 900px;">
+            The AI Operating System for <span style="background: linear-gradient(135deg, #fff 0%, #c5a880 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Developer Communities</span>.
+          </h1>
+          <p class="text-lg color-secondary m-b-8" style="max-width: 650px; font-weight: 300; line-height: 1.6;">
+            Stop managing manually. Orchestrate a team of specialized AI agents that continuously understand your members, match mentors, build teams, and automate community growth.
+          </p>
+          <div class="flex gap-4 m-b-12">
+            <button class="btn btn-primary" onclick="navigateTo('auth')">Deploy OrbitOS to your Community</button>
+            <button class="btn btn-secondary" onclick="scrollToElement('features')">Explore Agents</button>
+          </div>
+        </div>
+
+        <!-- Premium Product Preview -->
+        <div class="container m-b-24">
+          <div class="card glass-panel p-8" style="min-height: 480px; overflow: hidden; border-color: rgba(255,255,255,0.06);">
+            <!-- Simulated Interface Preview Header -->
+            <div class="flex justify-between align-center m-b-6 border-bottom p-b-4" style="border-bottom: 1px solid var(--border-primary); padding-bottom: var(--space-4);">
+              <div class="flex align-center gap-3">
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></span>
+                <span style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></span>
+                <span class="text-xs color-tertiary font-display m-l-2">orbitos-console / global-twin</span>
+              </div>
+              <div class="badge text-xs" style="color: var(--accent-champagne); border-color: var(--accent-champagne-muted);">Community Twin Active</div>
+            </div>
+
+            <!-- Simulated Twin Visualization -->
+            <div class="grid grid-3 gap-6">
+              <!-- Left Sidebar: AI Agents Status -->
+              <div class="flex flex-col gap-4">
+                <div class="card" style="padding: var(--space-4); background: rgba(255,255,255,0.01);">
+                  <div class="flex justify-between align-center m-b-2">
+                    <span class="text-sm font-semibold">Community Manager</span>
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #27c93f; box-shadow: 0 0 8px #27c93f;"></span>
+                  </div>
+                  <p class="text-xs color-tertiary">Onboarded 24 new developers today. Answered 112 FAQs.</p>
+                </div>
+                <div class="card" style="padding: var(--space-4); background: rgba(255,255,255,0.01);">
+                  <div class="flex justify-between align-center m-b-2">
+                    <span class="text-sm font-semibold">Mentor Matcher</span>
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #27c93f; box-shadow: 0 0 8px #27c93f;"></span>
+                  </div>
+                  <p class="text-xs color-tertiary">Linked 8 students with senior builders based on Rust expertise.</p>
+                </div>
+                <div class="card" style="padding: var(--space-4); background: rgba(255,255,255,0.01);">
+                  <div class="flex justify-between align-center m-b-2">
+                    <span class="text-sm font-semibold">Team Builder</span>
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #27c93f; box-shadow: 0 0 8px #27c93f;"></span>
+                  </div>
+                  <p class="text-xs color-tertiary">Formed 4 balanced hackathon squads using skill-mesh analytics.</p>
+                </div>
+              </div>
+
+              <!-- Center Column: Community Graph simulation -->
+              <div class="card flex flex-col align-center justify-between" style="grid-column: span 2; min-height: 320px; background: radial-gradient(circle at center, rgba(197, 168, 128, 0.04) 0%, transparent 70%);">
+                <div class="w-full flex justify-between text-xs color-secondary m-b-4">
+                  <span>Interactive Network Mesh</span>
+                  <span>482 Members Linked</span>
+                </div>
+                <!-- Simulated Network Lines & Nodes (CSS Art) -->
+                <div style="position: relative; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;">
+                  <!-- Central Node -->
+                  <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--text-primary); border: 2px solid var(--accent-champagne); box-shadow: 0 0 20px rgba(197,168,128,0.4); z-index: 5;"></div>
+                  <!-- Orbiting Nodes -->
+                  <div style="position: absolute; width: 140px; height: 140px; border: 1px dashed var(--border-primary); border-radius: 50%; animation: spin 20s linear infinite;">
+                    <div style="position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; border-radius: 50%; background: var(--accent-champagne);"></div>
+                    <div style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 10px; height: 10px; border-radius: 50%; background: var(--text-secondary);"></div>
+                  </div>
+                  <div style="position: absolute; width: 220px; height: 220px; border: 1px solid rgba(255,255,255,0.03); border-radius: 50%; animation: spin-reverse 35s linear infinite;">
+                    <div style="position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); width: 7px; height: 7px; border-radius: 50%; background: var(--text-secondary);"></div>
+                    <div style="position: absolute; left: 0; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; background: var(--accent-champagne); border: 2px solid var(--bg-pure);"></div>
+                  </div>
+                  <div style="position: absolute; color: var(--text-secondary); font-size: 10px; top: 10%; left: 15%;">React</div>
+                  <div style="position: absolute; color: var(--text-secondary); font-size: 10px; bottom: 15%; right: 10%;">Rust</div>
+                  <div style="position: absolute; color: var(--text-secondary); font-size: 10px; top: 20%; right: 25%;">Solidity</div>
+                </div>
+                <div class="w-full flex justify-between text-xs color-tertiary">
+                  <span>Pulse: Strong (87/100)</span>
+                  <span>Predictions: +14% Activity next week</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Proof & Community Metrics -->
+        <div class="container m-b-24">
+          <div class="grid grid-4 gap-6">
+            <div class="text-center p-6">
+              <h3 class="text-4xl font-light m-b-2">12,400+</h3>
+              <p class="text-sm color-secondary">Developers Connected</p>
+            </div>
+            <div class="text-center p-6">
+              <h3 class="text-4xl font-light m-b-2">94%</h3>
+              <p class="text-sm color-secondary">Mentorship Match Rate</p>
+            </div>
+            <div class="text-center p-6">
+              <h3 class="text-4xl font-light m-b-2">350+</h3>
+              <p class="text-sm color-secondary">Teams Formed Weekly</p>
+            </div>
+            <div class="text-center p-6">
+              <h3 class="text-4xl font-light m-b-2">4.8h</h3>
+              <p class="text-sm color-secondary">Weekly Time Saved / Member</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features & Agent Details -->
+        <div id="features" class="container m-b-24">
+          <h2 class="text-4xl font-light text-center m-b-12">The Autonomous Community Agents</h2>
+          <div class="grid grid-3 gap-6">
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Community Manager</h3>
+              <p class="text-sm color-secondary">Welcomes new developers, answers FAQs instantly, guides onboarding, and points developers to correct resources.</p>
+            </div>
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Mentor Matcher</h3>
+              <p class="text-sm color-secondary">Connects members with experienced mentors based on background, coding skills, weekly availability, and career aspirations.</p>
+            </div>
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Hackathon Team Builder</h3>
+              <p class="text-sm color-secondary">Assembles multi-disciplinary, balanced development teams utilizing skill-mesh alignment, timezone proximity, and communication patterns.</p>
+            </div>
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Learning Coach</h3>
+              <p class="text-sm color-secondary">Curates custom educational pathways that adapt weekly, keeping tabs on project goals, and recommending local community workshops.</p>
+            </div>
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Project Discovery</h3>
+              <p class="text-sm color-secondary">Filters community repositories, open-source projects, and startup opportunities, pointing members to what suits them best.</p>
+            </div>
+            <div class="card">
+              <div class="m-b-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              </div>
+              <h3 class="text-lg font-medium m-b-2">Community Health Agent</h3>
+              <p class="text-sm color-secondary">Built for organizers. Forecasts community growth, monitors mentor bandwidth, predicts member churn, and signals chapter status.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signature Digital Twin Section -->
+        <div id="twin" class="container m-b-24">
+          <div class="grid grid-2 gap-8 align-center">
+            <div>
+              <span class="badge badge-champagne m-b-4">Signature Innovation</span>
+              <h2 class="text-4xl font-light m-b-4">The Community Digital Twin</h2>
+              <p class="text-md color-secondary m-b-6" style="line-height: 1.6;">
+                Traditional platforms like Discord or Slack organize discussions, but they keep you blind to how relationships actually evolve.
+              </p>
+              <p class="text-md color-secondary m-b-6" style="line-height: 1.6;">
+                OrbitOS constructs a live, interactive topological map of the entire community. It models skills, mentorship arcs, active collaborations, and event impact, enabling you to simulation-test growth, prevent mentor burnouts, and spot quiet spaces before members fade.
+              </p>
+              <button class="btn btn-secondary" onclick="navigateTo('auth')">View Twin Demo</button>
+            </div>
+            <div class="card flex align-center justify-center" style="height: 380px; background: radial-gradient(circle at center, #171719 0%, #080808 100%);">
+              <div class="twin-visual-orb"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="container text-center p-8 m-b-24 border-top" style="border-top: 1px solid var(--border-primary); padding-top: var(--space-12);">
+          <h2 class="text-4xl font-light m-b-4">Build the Future of Developer Ecosystems</h2>
+          <p class="text-md color-secondary m-b-6" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+            OrbitOS is the next-gen community standard. Ready to scale yours?
+          </p>
+          <button class="btn btn-primary btn-lg" onclick="navigateTo('auth')">Deploy Autonomous Hub</button>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: AUTHENTICATION (Placeholder wrapper) -->
+      <section id="screen-auth" class="hidden animate-fade">
+        <!-- Will be dynamically populated or contains markup -->
+      </section>
+
+      <!-- SCREEN 3: AI ONBOARDING (Placeholder wrapper) -->
+      <section id="screen-onboarding" class="hidden animate-fade">
+        <!-- Will be dynamically populated or contains markup -->
+      </section>
+
+      <!-- SCREEN 4: MEMBER DASHBOARD (Placeholder wrapper) -->
+      <section id="screen-dashboard" class="hidden animate-fade">
+        <!-- Will be dynamically populated or contains markup -->
+      </section>
+
+      <!-- SCREEN 5: ADMIN DASHBOARD (Placeholder wrapper) -->
+      <section id="screen-admin" class="hidden animate-fade">
+        <!-- Will be dynamically populated or contains markup -->
+      </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="container text-center p-6 text-xs color-tertiary border-top" style="border-top: 1px solid var(--border-dim); margin-top: auto;">
+      <p>&copy; 2026 OrbitOS. Handcrafted for developer communities. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- Adding CSS art styles for Landing & spin animation -->
+  <style>
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spin-reverse {
+      100% { transform: rotate(-360deg); }
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+      50% { transform: translateY(-15px) scale(1.05); filter: brightness(1.2); }
+    }
+    .twin-visual-orb {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff 0%, #c5a880 40%, #000 100%);
+      box-shadow: 0 0 35px rgba(197, 168, 128, 0.25), inset -10px -10px 30px rgba(0,0,0,0.8);
+      position: relative;
+      animation: floatOrb 6s ease-in-out infinite;
+    }
+    .twin-visual-orb::after {
+      content: '';
+      position: absolute;
+      width: 170%;
+      height: 170%;
+      top: -35%;
+      left: -35%;
+      border-radius: 50%;
+      border: 1px solid rgba(197, 168, 128, 0.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
+      transform: rotateX(75deg);
+    }
+  </style>
+
+  <!-- App Main Scripts -->
+  <script src="dashboard_framework.js"></script>
+  <script src="mentor_matching.js"></script>
+  <script src="team_builder.js"></script>
+  <script src="project_discovery.js"></script>
+  <script src="community_graph.js"></script>
+  <script src="digital_twin.js"></script>
+  <script src="admin_dashboard.js"></script>
+  <script src="roadmap_events_profile.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

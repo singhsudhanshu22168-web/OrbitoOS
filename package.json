@@ -1,0 +1,13 @@
+{
+  "name": "orbitos-prototype",
+  "version": "1.0.0",
+  "description": "OrbitOS — High-fidelity interactive prototype for Developer Communities",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
