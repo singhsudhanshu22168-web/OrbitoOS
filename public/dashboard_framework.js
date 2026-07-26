@@ -6,19 +6,22 @@ function renderMemberDashboard(tabId) {
   appState.dashboardTab = tabId;
   const container = $('screen-dashboard');
   
-  // Clean profile fallback if page refreshed or direct loaded
-  if (!appState.user) {
-    appState.user = {
-      name: 'Alex Novak',
-      email: 'alex.novak@github.com',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
-      github: 'alexnovak',
-      skills: ['Rust', 'TypeScript', 'Docker'],
-      goals: 'Master new technologies',
-      timeCommitment: '5-10 hours/week',
-      role: 'Fullstack'
-    };
-  }
+  // Clean profile fallback if page refreshed or direct loaded — merged rather
+  // than replaced, so a user who reached the dashboard without finishing
+  // onboarding (auth submitted but role/skills/goals never set) still gets
+  // every field the tabs below expect, instead of "undefined" text or a
+  // crash on appState.user.skills.includes(...).
+  appState.user = {
+    name: 'Alex Novak',
+    email: 'alex.novak@github.com',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80',
+    github: 'alexnovak',
+    skills: ['Rust', 'TypeScript', 'Docker'],
+    goals: 'Master new technologies',
+    timeCommitment: '5-10 hours/week',
+    role: 'Fullstack',
+    ...appState.user
+  };
 
   const navItems = [
     { id: 'home', label: 'Overview', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>' },
