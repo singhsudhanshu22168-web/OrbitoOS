@@ -4,7 +4,6 @@ const appState = {
   currentScreen: 'landing',
   user: null, // Filled during onboarding
   dashboardTab: 'home',
-  role: 'member', // 'member' or 'admin'
   onboardingStep: 0,
   onboardingData: {
     github: '',
@@ -38,11 +37,10 @@ function navigateTo(screenId, tabId = null) {
   hide($('screen-auth'));
   hide($('screen-onboarding'));
   hide($('screen-dashboard'));
-  hide($('screen-admin'));
 
   // Toggle global navbar visibility based on screen
   const nav = $('global-nav');
-  if (screenId === 'dashboard' || screenId === 'admin' || screenId === 'onboarding') {
+  if (screenId === 'dashboard' || screenId === 'onboarding') {
     hide(nav);
   } else {
     show(nav);
@@ -62,11 +60,7 @@ function navigateTo(screenId, tabId = null) {
   } else if (screenId === 'onboarding') {
     startOnboarding();
   } else if (screenId === 'dashboard') {
-    appState.role = 'member';
     renderMemberDashboard(tabId || appState.dashboardTab);
-  } else if (screenId === 'admin') {
-    appState.role = 'admin';
-    renderAdminDashboard(tabId || 'pulse');
   }
 }
 
@@ -94,7 +88,7 @@ function renderAuthScreen() {
               <span>OrbitOS</span>
             </div>
             <h2 class="text-3xl font-light m-b-4" style="line-height: 1.2;">The Community is the Console.</h2>
-            <p class="text-sm color-secondary">Connect your developer identity to deploy your space or join custom learning and collaboration cohorts designed by autonomous agents.</p>
+            <p class="text-sm color-secondary">Connect your developer identity so OrbitOS can start recommending mentors, teammates, projects, and events matched to you.</p>
           </div>
           <div class="flex flex-col gap-3 border-top p-t-4" style="border-top: 1px solid var(--border-primary); margin-top: var(--space-8);">
             <div class="flex gap-2 align-center">
@@ -106,30 +100,8 @@ function renderAuthScreen() {
 
         <!-- Right Side: Auth Inputs -->
         <div class="flex flex-col justify-center p-8">
-          <h2 class="text-2xl font-medium m-b-2">Select Access Node</h2>
-          <p class="text-xs color-secondary m-b-6">Sign in to preview either the member cockpit or the community command center.</p>
-          
-          <div class="flex flex-col gap-4 m-b-6">
-            <div class="card card-interactive flex align-center gap-4 border-primary" id="select-role-member" onclick="selectAuthRole('member')" style="background-color: rgba(255,255,255,0.02); border-color: var(--accent-champagne);">
-              <div class="flex align-center justify-center" style="width: 32px; height: 32px; border-radius: 50%; background: var(--accent-champagne-muted); border: 1px solid rgba(197, 168, 128, 0.3);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-champagne)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-sm font-semibold">Join as Member</span>
-                <span class="text-xs color-tertiary">Setup profile, matches, roadmap, and graph</span>
-              </div>
-            </div>
-
-            <div class="card card-interactive flex align-center gap-4" id="select-role-admin" onclick="selectAuthRole('admin')">
-              <div class="flex align-center justify-center" style="width: 32px; height: 32px; border-radius: 50%; background: var(--bg-tertiary); border: 1px solid var(--border-primary);">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-sm font-semibold">Login as Community Lead (Admin)</span>
-                <span class="text-xs color-tertiary">Orchestrate agents, check pulses, forecast churn</span>
-              </div>
-            </div>
-          </div>
+          <h2 class="text-2xl font-medium m-b-2">Join OrbitOS</h2>
+          <p class="text-xs color-secondary m-b-6">Sign in to sync your GitHub identity and preview your member cockpit.</p>
 
           <form onsubmit="handleAuthSubmit(event)">
             <div class="m-b-4">
@@ -149,49 +121,6 @@ function renderAuthScreen() {
   `;
 }
 
-function selectAuthRole(role) {
-  appState.role = role;
-  const memberCard = $('select-role-member');
-  const adminCard = $('select-role-admin');
-  const submitBtn = $('auth-submit-btn');
-
-  if (role === 'member') {
-    memberCard.style.borderColor = 'var(--accent-champagne)';
-    memberCard.style.backgroundColor = 'rgba(255,255,255,0.02)';
-    adminCard.style.borderColor = 'var(--border-primary)';
-    adminCard.style.backgroundColor = 'var(--bg-secondary)';
-    
-    // Change icon color inside admin card to secondary
-    adminCard.querySelector('svg').setAttribute('stroke', 'var(--text-secondary)');
-    adminCard.querySelector('div').style.backgroundColor = 'var(--bg-tertiary)';
-    adminCard.querySelector('div').style.borderColor = 'var(--border-primary)';
-    
-    // Change icon color inside member card to champagne
-    memberCard.querySelector('svg').setAttribute('stroke', 'var(--accent-champagne)');
-    memberCard.querySelector('div').style.backgroundColor = 'var(--accent-champagne-muted)';
-    memberCard.querySelector('div').style.borderColor = 'rgba(197, 168, 128, 0.3)';
-    
-    submitBtn.innerText = 'Launch Member Console';
-  } else {
-    adminCard.style.borderColor = 'var(--accent-champagne)';
-    adminCard.style.backgroundColor = 'rgba(255,255,255,0.02)';
-    memberCard.style.borderColor = 'var(--border-primary)';
-    memberCard.style.backgroundColor = 'var(--bg-secondary)';
-    
-    // Change icon color inside member card to secondary
-    memberCard.querySelector('svg').setAttribute('stroke', 'var(--text-secondary)');
-    memberCard.querySelector('div').style.backgroundColor = 'var(--bg-tertiary)';
-    memberCard.querySelector('div').style.borderColor = 'var(--border-primary)';
-    
-    // Change icon color inside admin card to champagne
-    adminCard.querySelector('svg').setAttribute('stroke', 'var(--accent-champagne)');
-    adminCard.querySelector('div').style.backgroundColor = 'var(--accent-champagne-muted)';
-    adminCard.querySelector('div').style.borderColor = 'rgba(197, 168, 128, 0.3)';
-    
-    submitBtn.innerText = 'Launch Organizer Command Center';
-  }
-}
-
 function handleAuthSubmit(event) {
   event.preventDefault();
   const email = event.target.querySelector('input[type="email"]').value;
@@ -201,11 +130,7 @@ function handleAuthSubmit(event) {
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
   };
 
-  if (appState.role === 'member') {
-    navigateTo('onboarding');
-  } else {
-    navigateTo('admin');
-  }
+  navigateTo('onboarding');
 }
 
 // ==========================================
@@ -396,7 +321,7 @@ function processOnboardingGithub() {
   container.innerHTML = `
     <div class="container flex flex-col align-center justify-center" style="min-height: 100vh;">
       <div class="flex flex-col align-center text-center max-w-sm animate-fade">
-        <div class="twin-visual-orb m-b-8" style="width: 80px; height: 80px;"></div>
+        <div class="loading-orb m-b-8" style="width: 80px; height: 80px;"></div>
         <h3 class="text-2xl font-light m-b-3">Analyzing GitHub Identity</h3>
         <p class="text-xs color-secondary m-b-4">Parsing repositories for skills, API designs, and contribution patterns...</p>
         <span class="text-xs color-tertiary" id="loading-details">Checking github.com/${username} ...</span>
