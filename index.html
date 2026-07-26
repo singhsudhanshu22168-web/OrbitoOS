@@ -287,13 +287,12 @@
     }
   </style>
 
-  <!-- Sentinel Council backend location. Defaults work for local dev where
-       both frontend and backend run on localhost. When deploying frontend
-       and backend to separate hosts, change these two lines to the
-       backend's real URL (e.g. https://sentinel-api.yourhost.com). -->
+  <!-- Sentinel Council backend location, deployed on Render. For local dev
+       against a locally-running backend instead, change these two lines
+       back to http://localhost:8787 / ws://localhost:8787. -->
   <script>
-    window.ORBITOS_API_BASE = 'http://localhost:8787';
-    window.ORBITOS_WS_BASE = 'ws://localhost:8787';
+    window.ORBITOS_API_BASE = 'https://orbitoos.onrender.com';
+    window.ORBITOS_WS_BASE = 'wss://orbitoos.onrender.com';
   </script>
 
   <!-- App Main Scripts -->
