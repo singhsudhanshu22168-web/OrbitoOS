@@ -412,41 +412,6 @@ a {
   display: none !important;
 }
 
-/* Sentinel Council chamber */
-.council-orb {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6), inset -6px -6px 14px rgba(0, 0, 0, 0.7);
-  opacity: 0.45;
-  transition: opacity var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.council-orb-chair {
-  width: 56px;
-  height: 56px;
-  opacity: 0.85;
-}
-.council-orb-active {
-  opacity: 1;
-  box-shadow: 0 0 28px rgba(197, 168, 128, 0.5), inset -6px -6px 14px rgba(0, 0, 0, 0.6);
-  transform: translate(-50%, -50%) scale(1.15);
-}
-.council-orb-label {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  white-space: nowrap;
-  color: var(--text-tertiary);
-  letter-spacing: 0.02em;
-}
-
 /* Grid Layouts for Responsive Design */
 @media (max-width: 1024px) {
   .grid-4 { grid-template-columns: repeat(3, 1fr); }

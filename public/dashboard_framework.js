@@ -25,14 +25,10 @@ function renderMemberDashboard(tabId) {
 
   const navItems = [
     { id: 'home', label: 'Overview', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>' },
-    { id: 'roadmap', label: 'Learning Roadmap', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>' },
     { id: 'mentor', label: 'Mentor Match', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>' },
     { id: 'team', label: 'Team Builder', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>' },
     { id: 'projects', label: 'Project Discovery', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>' },
-    { id: 'graph', label: 'Community Graph', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M20 4H4v16h16V4z" stroke-dasharray="2,2"></path><line x1="9" y1="6" x2="15" y2="18"></line></svg>' },
-    { id: 'twin', label: 'Digital Twin', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg>' },
-    { id: 'events', label: 'Priority Events', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' },
-    { id: 'profile', label: 'My Identity', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>' }
+    { id: 'events', label: 'Priority Events', icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' }
   ];
 
   // Render main layout structure
@@ -70,10 +66,6 @@ function renderMemberDashboard(tabId) {
 
         <!-- Sidebar footer controls -->
         <div class="flex flex-col gap-2 w-full">
-          <button class="btn btn-secondary text-xs w-full flex align-center justify-between" onclick="navigateTo('admin')">
-            <span>Organizer Center</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-          </button>
           <button class="btn btn-tertiary text-xs text-left w-full" onclick="navigateTo('landing')">Logout</button>
         </div>
       </aside>
@@ -198,22 +190,14 @@ function renderTabContent(tabId) {
   switch (tabId) {
     case 'home':
       return renderHomeTab();
-    case 'roadmap':
-      return renderRoadmapTab ? renderRoadmapTab() : '<p>Roadmap Module loading...</p>';
     case 'mentor':
       return renderMentorTab ? renderMentorTab() : '<p>Mentor Module loading...</p>';
     case 'team':
       return renderTeamTab ? renderTeamTab() : '<p>Team Module loading...</p>';
     case 'projects':
       return renderProjectsTab ? renderProjectsTab() : '<p>Project Module loading...</p>';
-    case 'graph':
-      return renderGraphTab ? renderGraphTab() : '<p>Graph Module loading...</p>';
-    case 'twin':
-      return renderTwinTab ? renderTwinTab() : '<p>Twin Module loading...</p>';
     case 'events':
       return renderEventsTab ? renderEventsTab() : '<p>Events Module loading...</p>';
-    case 'profile':
-      return renderProfileTab ? renderProfileTab() : '<p>Profile Module loading...</p>';
     default:
       return renderHomeTab();
   }
@@ -239,35 +223,22 @@ function renderHomeTab() {
     <!-- Grid of Key Metric / Goal Cards -->
     <div class="grid grid-3 gap-6 m-b-8">
       
-      <!-- Card 1: Today's Goal -->
+      <!-- Card 1: Skill Signal -->
       <div class="card flex flex-col justify-between" style="min-height: 200px;">
         <div>
-          <span class="text-xs color-secondary uppercase">Today's Focus</span>
-          <h4 class="text-lg font-medium m-t-2">Review Rust Concurrency</h4>
-          <p class="text-xs color-secondary m-t-1">Complete module 2 of your Weekly Roadmap to unlock matching projects.</p>
+          <span class="text-xs color-secondary uppercase">Skill Signal</span>
+          <h4 class="text-lg font-medium m-t-2">Rust & Systems Engineering</h4>
+          <p class="text-xs color-secondary m-t-1">Detected from 14 public repos. This is the skill driving most of your matches this week.</p>
         </div>
-        <button class="btn btn-secondary text-xs w-full justify-between" onclick="renderMemberDashboard('roadmap')">
-          <span>Go to Roadmap</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
       </div>
 
-      <!-- Card 2: Learning Progress -->
+      <!-- Card 2: Match Activity -->
       <div class="card flex flex-col justify-between" style="min-height: 200px;">
         <div>
-          <span class="text-xs color-secondary uppercase">Learning Progress</span>
-          <div class="flex justify-between align-center m-t-3 m-b-1">
-            <span class="text-xs font-semibold">Rust & Systems Engineering</span>
-            <span class="text-xs color-secondary">62%</span>
-          </div>
-          <div style="width: 100%; height: 6px; border-radius: var(--radius-full); background: var(--bg-tertiary); overflow: hidden;">
-            <div class="progress-bar-fill" style="width: 62%;"></div>
-          </div>
+          <span class="text-xs color-secondary uppercase">Match Activity</span>
+          <h4 class="text-lg font-medium m-t-2">7 new matches this week</h4>
+          <p class="text-xs color-secondary m-t-1">1 mentor, 2 hackathon squads, 1 open-source project, 3 relevant events.</p>
         </div>
-        <button class="btn btn-secondary text-xs w-full justify-between" onclick="renderMemberDashboard('roadmap')">
-          <span>Resume Roadmap</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
       </div>
 
       <!-- Card 3: Suggested Mentor -->
