@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: orbitos-sentinel-council
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: AUTO_EXECUTE_THRESHOLD
+        value: "0.9"

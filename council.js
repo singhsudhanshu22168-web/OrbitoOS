@@ -2,12 +2,16 @@
 // MODULE 12: SENTINEL COUNCIL (ADMIN)
 // ==========================================
 // Multi-agent governance layer over the Community Digital Twin. Talks to the
-// real backend in /server (Express + SQLite + Anthropic-or-simulated agent
+// real backend in /server (Express + SQLite + OpenAI-or-simulated agent
 // graph) over REST + a WebSocket stream, following the same
 // render<X>Tab()-returns-a-template-string convention as every other tab file.
+//
+// Backend location comes from window.ORBITOS_API_BASE / ORBITOS_WS_BASE, set
+// in index.html — edit those two lines when frontend and backend are
+// deployed to separate hosts. Falls back to localhost for local dev.
 
-const COUNCIL_API_BASE = 'http://localhost:8787';
-const COUNCIL_WS_URL = 'ws://localhost:8787/council/stream';
+const COUNCIL_API_BASE = window.ORBITOS_API_BASE || 'http://localhost:8787';
+const COUNCIL_WS_URL = `${window.ORBITOS_WS_BASE || 'ws://localhost:8787'}/council/stream`;
 
 const COUNCIL_AGENTS = [
   { id: 'retention',    label: 'Retention Agent',        color: '#d97b6c' },

@@ -287,6 +287,15 @@
     }
   </style>
 
+  <!-- Sentinel Council backend location. Defaults work for local dev where
+       both frontend and backend run on localhost. When deploying frontend
+       and backend to separate hosts, change these two lines to the
+       backend's real URL (e.g. https://sentinel-api.yourhost.com). -->
+  <script>
+    window.ORBITOS_API_BASE = 'http://localhost:8787';
+    window.ORBITOS_WS_BASE = 'ws://localhost:8787';
+  </script>
+
   <!-- App Main Scripts -->
   <script src="dashboard_framework.js"></script>
   <script src="mentor_matching.js"></script>
