@@ -1,11 +1,11 @@
 // LLM provider abstraction for the Council's specialists and Chair.
 //
-// Anthropic (Claude) is the primary path this project was designed around.
-// An OpenAI path is included as an alternative for whoever is running this
-// with an OpenAI key instead — same call shape in, same plain string out,
-// so agents/council.js never has to know which provider answered.
+// OpenAI is the provider this project is configured to run on. An Anthropic
+// path is included as a drop-in alternative if a Claude key is ever added
+// instead — same call shape in, same plain string out, so agents/council.js
+// never has to know which provider answered.
 //
-// Precedence: ANTHROPIC_API_KEY, then OPENAI_API_KEY, then no client (the
+// Precedence: OPENAI_API_KEY, then ANTHROPIC_API_KEY, then no client (the
 // rule-based simulation in council.js takes over).
 
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
@@ -15,8 +15,8 @@ let anthropicClient = null;
 let openaiClient = null;
 
 function activeProvider() {
-  if (process.env.ANTHROPIC_API_KEY) return 'anthropic';
   if (process.env.OPENAI_API_KEY) return 'openai';
+  if (process.env.ANTHROPIC_API_KEY) return 'anthropic';
   return null;
 }
 

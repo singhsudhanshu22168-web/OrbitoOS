@@ -2,17 +2,18 @@
 //
 // Shaped as a bounded-round StateGraph (perceive -> fan-out -> collect ->
 // conflict? -> re-question (max 1 extra round) -> synthesize -> act), matching
-// the LangGraph workflow in the RFC. Implemented directly against the Anthropic
-// SDK rather than pulling in @langchain/langgraph, so the graph has no extra
-// framework dependency for a hackathon build — the node/edge shape is the same,
-// only the runtime is hand-rolled.
+// the LangGraph workflow in the RFC. Implemented directly against llmClient.js
+// (OpenAI by default, Anthropic if configured instead) rather than pulling in
+// @langchain/langgraph, so the graph has no extra framework dependency for a
+// hackathon build — the node/edge shape is the same, only the runtime is
+// hand-rolled.
 //
 // Every specialist's tool calls are pre-resolved (deterministic per domain) and
 // handed to the model as context rather than a live tool_use round-trip — a
 // scope cut for build speed. The model still does the actual reasoning: whether
 // to flag a concern, what to propose, and how confident to be, from real data.
 //
-// If ANTHROPIC_API_KEY is not set, runAgent() falls back to a small rule-based
+// If no LLM API key is configured, runAgent() falls back to a small rule-based
 // simulation with the identical output contract, so `npm start` demos end-to-end
 // with zero configuration, and swaps to real reasoning the moment a key is added.
 
