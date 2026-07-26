@@ -21,19 +21,9 @@ const db = require('../db');
 const tools = require('./tools');
 const { AGENT_PROMPTS, CHAIR_PROMPT } = require('./prompts');
 const { embed, nearestCases } = require('./embeddings');
+const { callModel, activeProvider } = require('./llmClient');
 
-const MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-5';
 const AUTO_EXECUTE_THRESHOLD = Number(process.env.AUTO_EXECUTE_THRESHOLD || 0.9);
-
-let anthropicClient = null;
-function getClient() {
-  if (!process.env.ANTHROPIC_API_KEY) return null;
-  if (!anthropicClient) {
-    const Anthropic = require('@anthropic-ai/sdk');
-    anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-  }
-  return anthropicClient;
-}
 
 function safeParseJSON(text, fallback) {
   try {
@@ -42,19 +32,6 @@ function safeParseJSON(text, fallback) {
   } catch {
     return fallback;
   }
-}
-
-async function callModel(systemPrompt, userContent) {
-  const client = getClient();
-  if (!client) return null;
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 400,
-    system: systemPrompt,
-    messages: [{ role: 'user', content: userContent }]
-  });
-  const text = resp.content.map(b => (b.type === 'text' ? b.text : '')).join('');
-  return text;
 }
 
 // ---------- Rule-based fallback (no API key required) ----------
@@ -168,25 +145,25 @@ function buildSentimentContext() {
 // ---------- Graph run ----------
 
 async function runAgent(domain, ctx) {
-  const client = getClient();
-  if (!client) return simulate(domain, ctx);
+  if (!activeProvider()) return simulate(domain, ctx);
   try {
     const text = await callModel(AGENT_PROMPTS[domain], JSON.stringify(ctx));
     const parsed = safeParseJSON(text, null);
     return parsed || simulate(domain, ctx);
   } catch (err) {
+    console.warn(`[${domain}] live LLM call failed, falling back to simulation:`, err.message);
     return simulate(domain, ctx);
   }
 }
 
 async function runChair(proposals, conflict, precedent) {
-  const client = getClient();
-  if (!client) return simulateChair(proposals, conflict, precedent);
+  if (!activeProvider()) return simulateChair(proposals, conflict, precedent);
   try {
     const text = await callModel(CHAIR_PROMPT, JSON.stringify({ proposals, conflict, precedent }));
     const parsed = safeParseJSON(text, null);
     return parsed || simulateChair(proposals, conflict, precedent);
-  } catch {
+  } catch (err) {
+    console.warn('[chair] live LLM call failed, falling back to simulation:', err.message);
     return simulateChair(proposals, conflict, precedent);
   }
 }
